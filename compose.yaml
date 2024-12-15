@@ -1,0 +1,14 @@
+services:
+  server1:
+    build: ./Server-1
+    ports:
+      - "81:81"
+    environment:
+      SERVER_2: "http://server2:82"
+
+  server2:
+    build: ./Server-2
+    ports:
+      - "82:82"
+    environment:
+      SERVER_1: "http://server1:81"

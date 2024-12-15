@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server 2</title>
+</head>
+<body>
+    <button onclick="loadServerOne()">Load Server 1 data</button>
+    <p id="server-1-data"></p>
+
+    <button onclick="loadServerOneHTML()">Load Server 1 html</button>
+    <iframe id="sever-1-html">
+
+    </iframe>
+</body>
+<script>
+    function loadServerOne(){
+        fetch('http://localhost:81/data')
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('server-1-data').innerHTML = data;
+            console.log('Data:', data); 
+        })
+        .catch(error => {
+            alert('An error has appeared')
+            console.error('Fetch error:', error);
+        });
+    }
+    function loadServerOneHTML(){
+        document.getElementById("sever-1-html").setAttribute("src", "http://localhost:81")
+    }
+</script>
+</html>
